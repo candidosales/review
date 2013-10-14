@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width" />
+	<title>Consult Contábil - Admin</title>
+
+	<link rel="stylesheet" href="css/normalize.css" />
+
+	<link rel="stylesheet" href="css/foundation.css" />
+	<link rel="stylesheet" href="icomoon/style.css">
+
+	<link rel="stylesheet/less" href="css/style.less">
+	<script src="js/vendor/less-1.4.1.min.js"></script>
+
+	<script src="js/vendor/custom.modernizr.js"></script>
+	<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro">-->
+
+</head>
+<body>
+<script type="text/x-handlebars" data-template-name="pages">
+	<div class="row" id="content">
+
+		<div class="small-2 columns" id="menu">
+			<div class="centered text-center" id="cliente">
+				<img src="img/logo.jpg" alt="">
+				<h4>ConsultContábil
+					<small>Interface Admin</small>
+				</h4>
+			</div>
+			<nav data-step="2" data-intro="Escolha"  id="menu-list">
+				<ul class="side-nav text-left">
+					<li>
+						<h5>Versões</h5>
+					</li>
+				{{#each}}
+					{{#if son}}
+						<li class="son">
+							{{#link-to 'page' this}}
+								---- {{title}}
+							{{/link-to}}
+						</li>
+					{{else}}
+						<li>
+							{{#link-to 'page' this}}
+								{{#if icon}}
+									<span {{bind-attr class="icon"}} >&nbsp;</span>
+								{{/if}}
+								{{title}}
+							{{/link-to}}
+						</li>
+					{{/if}}
+					
+				{{/each}}
+				</ul>
+			</nav>
+			<hr>
+			<div id="authors">
+				<ul>
+					<li>
+						<h5> <span class="icon-users"></span>  Autores</h5>
+					</li>
+					<li>
+						<a data-tooltip target="_blank" title="Visite seu blog" href="http://candidosg.com">
+							 Cândido Sales <span class="icon-wordpress"></span>
+						</a>
+					</li>
+					<li>
+						<a data-tooltip target="_blank" title="Visite seu blog" href="http://nilocoelhojunior.com/">
+							 Nilo Coelho <span class="icon-wordpress"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="small-10 columns" id="view">			
+			{{outlet}}
+		</div>
+	</div>	
+</script>
+
+<script type="text/x-handlebars" data-template-name="page">
+			<div id="btn-view" class="large-12 columns">
+				<div class="large-5 columns">
+					<ul class="button-group">
+					{{#if isResult}}
+						<li><button {{action 'showDraft'}} title="Veja o rascunho" class="round button">Rascunho</button></li>
+					{{else}}
+					  	<li><button {{action 'showResult'}} title="Veja o resultado final" class="round button success">Resultado</button></li>
+					{{/if}}
+					  
+					</ul>
+				</div>
+				<div class="large-5 columns">
+					<ul class="button-group round">
+						<li><a  {{action 'openModal'}} data-tooltip title="Informações sobre as mudanças" class="small button primary"><span class="icon-info-2"></span></a></li>
+						{{#if isResult}}
+						<li><a {{bind-attr href="pathResult"}} data-tooltip title="Download da imagem resultado" target="_blank" class="small button primary"><span class="icon-download"></span></a></li>
+						{{else}}
+						<li><a {{bind-attr href="pathVision"}} data-tooltip title="Download da imagem visão"  target="_blank" class="small button primary"><span class="icon-download"></span></a></li>
+						{{/if}}
+						<li>
+						{{#if isFullScreen}}
+							<a {{action 'exitFullScreen'}} data-tooltip title="Sair do modo tela cheia" class="small button primary">
+								<span class="icon-contract"></span>
+							</a>
+							{{else}}
+							<a {{action 'fullScreen'}} data-tooltip title="Tela cheia" class="small button primary">
+								<span class="icon-expand"></span>
+							</a>
+						
+							{{/if}}
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+	<div class="large-12 columns text-center" id="image">
+		<img class="vision none" {{bind-attr src="pathVision"}} />
+		<img id="result" class="result" {{bind-attr src="pathResult"}} />
+	</div>
+
+	<div id="changelog" class="reveal-modal">
+	  <h4>Histórico de mudanças</h4>
+	  <hr>
+	  <h6>6.v (Abril 17, 2013)</h6>
+	  <ul>
+	  	<li>Inserindo o título no botão </li>
+	  	<li>Alterado a imagem de fundo para uma que remeta tranquilidade e tenha as cores da ConsultContabil</li>
+	  	<li>Inserido o novo layout em todas as páginas</li>
+	  	<li>Inserido a imagem do cliente na área do login</li>
+	  </ul>
+	  <h6>5.v (Abril 11, 2013)</h6>
+	  <ul>
+	  	<li>Melhorar as cores do background e apresentar tooltip para leigos do sistema </li>
+	  </ul>
+	  <h6>4.v (Abril 10, 2013)</h6>
+	  <ul>
+	  	<li>Acoplamento do layout ao invólucro, tornando o layout mais conciso e organizado, evitando olho escapar para a profundidade do background</li>
+	  	<li>Reposicionamento do menu principal e da busca</li>
+	  </ul>
+	  <h6>3.v (Abril 9, 2013)</h6>
+	  <ul>
+	  	<li>Mudança de background para cores com tonalidade secundárias ao da logo </li>
+	  	<li>Inserido a "?" para indicar um item para tirar dúvida sobre a funcionalidade aos leigos</li>
+	  	<li>Retirado dos gráficos devido ao <span class="round alert label">excesso de informação no Painel</span>, inserindo-os somente nas páginas que os contextualizam</li>
+	  	<li>Ocultamento sobre as informações de regularização do cliente por <span class="round alert label">excesso de informação no Painel</span>, não sendo o foco principal do Painel</li>
+	  	<li>Inserção da busca</li>
+	  </ul>
+	  <h6>2.v (Abril 5, 2013)</h6>
+	  <ul>
+	  	<li>Gráfico mais simples</li>
+	  	<li>Botões minimalista sem texto</li>
+	  	<li>Acrescentado o botão de adicionar solicitação no Painel</li>
+	  	<li>Mudança do ícone do porco para o leão</li>
+	  	<li>Inserido o layout do chat</li>
+	  </ul>
+	  <h6>1.v (Abril 3, 2013)</h6>
+	  <ul>
+	  	<li>Design de interface de acordo com wireframe prévio </li>
+	  </ul>
+	  <a {{action 'closeModal'}}  class="close-reveal-modal">&#215;</a>
+	</div>	
+</script>
+	<script src="js/vendor/jquery.js"></script>
+	<script src="js/foundation.min.js"></script>
+
+	<script src="js/vendor/handlebars-1.0.0.js"></script>
+	<script src="js/vendor/ember-1.0.0.js"></script>
+	<script src="js/vendor/ember-data.prod.js"></script>
+	<script src="js/vendor/bigscreen.min.js"></script>
+	<script src="js/app-ember.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
