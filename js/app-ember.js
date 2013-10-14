@@ -3,13 +3,24 @@ var App = Ember.Application.create({
 });
 App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-/*App.ApplicationView = Ember.View.extend({
-  /*didInsertElement: function() {    
-    setTimeout(function() {
-      $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7});  
-    }, 0);
+App.PageView = Ember.View.extend({
+  didInsertElement: function() {
+    $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7}); 
+    $(window).on("resize.twentytwenty", function(e) {
+        adjustSlider(sliderPct);
+    });
+    
+    $('.accordion-menu li').hover(function(){
+		$('.accordion-menu li').each(function(){
+			$(this).closest('li').removeClass('active');
+		});
+			$(this).closest('li').addClass('active');
+	});
+
+    console.log('twenty ember'); 
   }
-});*/
+});
+
 
 
 App.Router.map(function() {
@@ -23,7 +34,6 @@ App.IndexRoute = Ember.Route.extend({
   page: null,
   redirect: function(){
   	page = this.store.find('page', 1);
-	console.log(page);
 	this.transitionTo('pages');
   }
 });
@@ -32,30 +42,7 @@ App.PageController = Ember.ObjectController.extend({
 	isResult: true,
 	isFullScreen:false,
 	zoom: 0,
-	/*setupController:function(){
-		 $(window).load(function(){
-		      $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7});  
-		    });
-			
-		},
-	init: function () {
-    	this._super();
-    	$(window).load(function(){
-		    $(".twentytwenty-container").twentytwenty({default_offset_pct: 0.7});  
-		});
-    },*/
-
 	actions: {
-		showResult: function() {
-			this.set('isResult', true);
-			$('.result, .vision').fadeToggle("linear");
-		},
-
-		showDraft: function() {
-			this.set('isResult', false);
-			$('.vision, .result').fadeToggle("linear");
-		},
-
 		openModal: function() {
 			$('#changelog').foundation('reveal', 'open');
 		},
@@ -78,8 +65,8 @@ App.PageController = Ember.ObjectController.extend({
 });
 
 App.PagesRoute = Ember.Route.extend({
-	model: function() {
-		return this.store.find('page');
+	model: function(params) {
+		return this.store.find('page',params.page_id);
 	}
 });
 
@@ -88,7 +75,8 @@ App.Page = DS.Model.extend({
 	icon: DS.attr('string'),
 	son: DS.attr('boolean'),
 	pathVision: DS.attr('string'),
-	pathResult: DS.attr('string')
+	pathResult: DS.attr('string'),
+	children: DS.hasMany('page')
 });
 
 App.Page.FIXTURES = [{
@@ -102,7 +90,8 @@ App.Page.FIXTURES = [{
 	title: "Mensagens",
 	icon: "",
 	pathVision: "img/mensagens-v.png",
-	pathResult: "img/mensagens-r.jpg"
+	pathResult: "img/mensagens-r.jpg",
+	children:[3]
 },{
 	id: 3,
 	title: "Mensagem",

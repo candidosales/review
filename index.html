@@ -7,13 +7,11 @@
   	<meta name="viewport" content="width=device-width" />
 	<title>Consult Contábil - Admin</title>
 
-	<link rel="stylesheet" href="css/normalize.css" />
-
-	<link rel="stylesheet" href="css/foundation.css" />
-	<link rel="stylesheet" href="icomoon/style.css">
-
+	
 	<link rel="stylesheet/less" href="css/style.less">
 	<script src="js/vendor/less-1.4.1.min.js"></script>
+
+	<link href="css/twentytwenty.css" rel="stylesheet" type="text/css" />
 
 	<script src="js/vendor/custom.modernizr.js"></script>
 	<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro">-->
@@ -24,38 +22,43 @@
 	<div class="row" id="content">
 
 		<div class="small-2 columns" id="menu">
-			<div class="centered text-center" id="cliente">
+			<div class="row" id="cliente">
 				<img src="img/logo.jpg" alt="">
 				<h4>ConsultContábil
 					<small>Interface Admin</small>
 				</h4>
 			</div>
-			<nav data-step="2" data-intro="Escolha"  id="menu-list">
-				<ul class="side-nav text-left">
-					<li>
-						<h5>Versões</h5>
-					</li>
-				{{#each}}
+			<div class="row">
+				<nav data-step="2" data-intro="Escolha"  id="menu-list">
+					<ul class="accordion-menu">
+					{{#each}}
 					{{#if son}}
-						<li class="son">
-							{{#link-to 'page' this}}
-								---- {{title}}
-							{{/link-to}}
-						</li>
 					{{else}}
-						<li>
-							{{#link-to 'page' this}}
-								{{#if icon}}
-									<span {{bind-attr class="icon"}} >&nbsp;</span>
+							<li>
+								{{#link-to 'page' this}}
+									{{title}}
+								{{/link-to}}							
+								{{#if children}}
+									<ul class="sub-menu">
+									{{#each children}}
+										<li>
+										{{#link-to 'page' this}}
+											{{#if icon}}
+												<span {{bind-attr class="icon"}} >&nbsp;</span>
+											{{/if}}
+											{{title}}
+										{{/link-to}}
+										</li>
+									{{/each}}
+
+									</ul>
 								{{/if}}
-								{{title}}
-							{{/link-to}}
-						</li>
-					{{/if}}
-					
-				{{/each}}
-				</ul>
-			</nav>
+							</li>
+					{{/if}}					
+					{{/each}}
+					</ul>
+				</nav>
+			</div>
 			<hr>
 			<div id="authors">
 				<ul>
@@ -84,17 +87,7 @@
 
 <script type="text/x-handlebars" data-template-name="page">
 			<div id="btn-view" class="large-12 columns">
-				<div class="large-5 columns">
-					<ul class="button-group">
-					{{#if isResult}}
-						<li><button {{action 'showDraft'}} title="Veja o rascunho" class="round button">Rascunho</button></li>
-					{{else}}
-					  	<li><button {{action 'showResult'}} title="Veja o resultado final" class="round button success">Resultado</button></li>
-					{{/if}}
-					  
-					</ul>
-				</div>
-				<div class="large-5 columns">
+				<div class="large-12 columns">
 					<ul class="button-group round">
 						<li><a  {{action 'openModal'}} data-tooltip title="Informações sobre as mudanças" class="small button primary"><span class="icon-info-2"></span></a></li>
 						{{#if isResult}}
@@ -120,8 +113,10 @@
 
 
 	<div class="large-12 columns text-center" id="image">
-		<img class="vision none" {{bind-attr src="pathVision"}} />
-		<img id="result" class="result" {{bind-attr src="pathResult"}} />
+		<div class="twentytwenty-container">
+			<img class="vision" {{bind-attr src="pathVision"}} />
+			<img id="result" class="result" {{bind-attr src="pathResult"}} />
+		</div>
 	</div>
 
 	<div id="changelog" class="reveal-modal">
@@ -173,6 +168,8 @@
 	<script src="js/vendor/ember-1.0.0.js"></script>
 	<script src="js/vendor/ember-data.prod.js"></script>
 	<script src="js/vendor/bigscreen.min.js"></script>
+	<script src="js/vendor/jquery.event.move.js"></script>
+    <script src="js/vendor/jquery.twentytwenty.js"></script>
 	<script src="js/app-ember.js"></script>
 	<script src="js/app.js"></script>
 </body>

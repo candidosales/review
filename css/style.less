@@ -1,32 +1,12 @@
-/* Mixins
-**************************/
-  .vertical(@startColor: #555, @endColor: #333) {
-    background-color: @endColor;
-    background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
-    background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Safari 5.1+, Chrome 10+
-    background-image: -o-linear-gradient(top, @startColor, @endColor); // Opera 11.10
-    background-image: linear-gradient(to bottom, @startColor, @endColor); // Standard, IE10
-    background-repeat: repeat-x;
-    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down
-  }
-
-  // Drop shadows
-.box-shadow(@shadow) {
-  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
-          box-shadow: @shadow;
-}
-
-.rounded(@radius: 50px) {
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  border-radius: @radius;
-}
+@import 'normalize.css';
+@import 'foundation.css';
+@import 'font.css';
+@import 'lesshat.less';
 
 /* Variables
 **************************/
 @color1: #34495e;
-@color2: #7f8c8d;
+@color2: #698DBB;
 @color-link: #2980b9;
 @color-link-active: #3498db;
 
@@ -39,7 +19,6 @@ body,h1,h2,h3,h4,h5{
 }
 h1,h2,h3,h4,h5{
 		color: @color2;
-		text-shadow: 0px 2px 0px #000;
 	}
 .none{display: none}
 hr{
@@ -58,7 +37,10 @@ hr{
 		}
 	}
 }
-
+.button{
+	box-shadow: none;
+	background: @color2;
+}
 /* App
 **************************/
 #content{
@@ -69,19 +51,24 @@ hr{
 }
 #menu {
 	position: fixed;
-	.vertical(#2c3e50,#475f78);
 	height: 100%;
 	padding-top: 30px;
 	.box-shadow(inset -5px 0 25px rgba(0, 0, 0, 0.8));
-
+	.gradient(~"linear-gradient(to bottom, #ffffff 50%,#afc9e7 100%)");
 	h4{
-		color: #fff;
+		color: #698DBB;
+		line-height: 1;
+		float: left;
+		width: 60%;
+		font-size: 1em;
+		padding: 10% 0 0 10%;
 	}
 
 	img{
 		width: 80px;
 		height: 80px;
-		.rounded()
+		.border-radius(50px);
+		float: left;
 	}
 
 	.side-nav{
@@ -106,10 +93,10 @@ hr{
 }
 
 #view{
-	.vertical(#fff,#ecf0f1);
+	.gradient(~"linear-gradient(to bottom, #ffffff 1%,#ecf0f1 100%)");
 	img{
 		.box-shadow(0px 5px 20px #95a5a6);
-		.rounded(5px);
+		.border-radius(5px);
 	}
 }
 
@@ -138,7 +125,111 @@ hr{
 		}
 	}
 }
-
 /* Zoom
 
 ******************************/
+/* Accordion menu
+
+******************************/
+
+.accordion-menu,
+.accordion-menu ul,
+.accordion-menu li,
+.accordion-menu a,
+.accordion-menu span {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+ 
+.accordion-menu li {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.accordion-menu li > a {
+	padding: 6% 4%;
+    display: block;
+    position: relative;
+    min-width: 110px; 
+    color: @color2;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+.accordion-menu li > a span {
+    display: block;
+    position: absolute;
+    top: 7px;
+    right: 0;
+    padding: 0 10px;
+    margin-right: 10px;
+ 
+    font: normal bold 12px/18px Arial, sans-serif;
+    background: #404247;
+ 
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+
+.sub-menu li a {
+    color: #797979;
+    text-shadow: 1px 1px 0px rgba(255,255,255, .2);
+    border-bottom: 1px solid #c9c9c9;
+}
+ 
+.sub-menu li:last-child a { border: none; }
+ 
+.sub-menu li > a span {
+    color: #797979;
+    text-shadow: 1px 1px 0px rgba(255,255,255, .2);
+    background: transparent;
+    border: 1px solid #c9c9c9;
+ 
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+ 
+.sub-menu em {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 14px;
+    color: #a6a6a6;
+    font: normal 10px/32px Arial, sans-serif;
+}
+
+
+.accordion-menu > li:hover > a,
+.accordion-menu > li:target > a,
+.accordion-menu > li > a.active {
+    color: #3e5706;
+}
+ 
+.accordion-menu > li:hover > a span,
+.accordion-menu > li:target > a span,
+.accordion-menu > li > a.active span {
+    color: #fdfdfd;
+    text-shadow: 0px 1px 0px rgba(0,0,0, .35);
+    background: #3e5706;
+}
+ 
+.sub-menu li:hover a { background: #efefef; }
+
+.accordion-menu li > .sub-menu {
+    height: 0;
+    overflow: hidden;
+ 	display: none;
+}
+ 
+.accordion-menu li.active > .sub-menu {
+    display: block;
+    height: inherit;
+}
+
