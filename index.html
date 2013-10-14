@@ -14,19 +14,21 @@
 	<link href="css/twentytwenty.css" rel="stylesheet" type="text/css" />
 
 	<script src="js/vendor/custom.modernizr.js"></script>
-	<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro">-->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
 <script type="text/x-handlebars" data-template-name="pages">
 	<div class="row" id="content">
 
-		<div class="small-2 columns" id="menu">
+		<div class="large-2 columns" id="menu">
 			<div class="row" id="cliente">
-				<img src="img/logo.jpg" alt="">
-				<h4>ConsultContábil
-					<small>Interface Admin</small>
-				</h4>
+				<div class="large-12 columns">
+					<img src="img/logo.jpg" alt="">
+					<h4>ConsultContábil
+						<small>Interface Admin</small>
+					</h4>
+				</div>
 			</div>
 			<div class="row">
 				<nav data-step="2" data-intro="Escolha"  id="menu-list">
@@ -59,7 +61,6 @@
 					</ul>
 				</nav>
 			</div>
-			<hr>
 			<div id="authors">
 				<ul>
 					<li>
@@ -79,7 +80,7 @@
 			</div>
 		</div>
 
-		<div class="small-10 columns" id="view">			
+		<div class="large-10 columns" id="view">			
 			{{outlet}}
 		</div>
 	</div>	

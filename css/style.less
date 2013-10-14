@@ -5,20 +5,20 @@
 
 /* Variables
 **************************/
-@color1: #34495e;
-@color2: #698DBB;
+@color-1: #34495e;
+@color-2: #698DBB;
 @color-link: #2980b9;
 @color-link-active: #3498db;
 
-@fontFamily1: 'Maven Pro', sans-serif;
+@font-family-1: 'Roboto', sans-serif;
 
 /* Globals
 **************************/
 body,h1,h2,h3,h4,h5{
-	font-family: @fontFamily1;
+	font-family: @font-family-1;
 }
 h1,h2,h3,h4,h5{
-		color: @color2;
+		color: @color-2;
 	}
 .none{display: none}
 hr{
@@ -39,7 +39,7 @@ hr{
 }
 .button{
 	box-shadow: none;
-	background: @color2;
+	background: @color-2;
 }
 /* App
 **************************/
@@ -47,21 +47,22 @@ hr{
 	max-width: none;
 }
 #cliente{
-	
+	padding-bottom: 20%;
 }
 #menu {
 	position: fixed;
 	height: 100%;
 	padding-top: 30px;
-	.box-shadow(inset -5px 0 25px rgba(0, 0, 0, 0.8));
+	.box-shadow(inset -5px 0 25px rgba(0, 0, 0, 0.2));
 	.gradient(~"linear-gradient(to bottom, #ffffff 50%,#afc9e7 100%)");
 	h4{
 		color: #698DBB;
 		line-height: 1;
 		float: left;
 		width: 60%;
-		font-size: 1em;
+		font-size: 1.1em;
 		padding: 10% 0 0 10%;
+		font-weight: 700;
 	}
 
 	img{
@@ -73,7 +74,7 @@ hr{
 
 	.side-nav{
 		h3,h4,h5{
-			color:@color2;
+			color:@color-2;
 			text-shadow: 0px 2px 0px #000;
 		}
 		 li {
@@ -91,9 +92,11 @@ hr{
 		}
 	}
 }
-
+#menu-list{
+	padding-bottom:20%;
+}
 #view{
-	.gradient(~"linear-gradient(to bottom, #ffffff 1%,#ecf0f1 100%)");
+	/*.gradient(~"linear-gradient(to bottom, #ffffff 1%,#ecf0f1 100%)");*/
 	img{
 		.box-shadow(0px 5px 20px #95a5a6);
 		.border-radius(5px);
@@ -146,7 +149,10 @@ hr{
 .accordion-menu li {
     list-style: none;
     border-bottom: 1px solid #ccc;
+}
 
+.accordion-menu li:last-child{
+  	border-bottom:none;
 }
 
 .accordion-menu li > a {
@@ -154,9 +160,10 @@ hr{
     display: block;
     position: relative;
     min-width: 110px; 
-    color: @color2;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
+    color: @color-2;
+    font-size: 1em;
+    font-weight: 100;
+    font-family: @font-family-1;
     text-decoration: none;
 }
 
@@ -170,10 +177,6 @@ hr{
  
     font: normal bold 12px/18px Arial, sans-serif;
     background: #404247;
- 
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
 }
 
 
@@ -210,6 +213,7 @@ hr{
 .accordion-menu > li:target > a,
 .accordion-menu > li > a.active {
     color: #3e5706;
+    background: #fff;
 }
  
 .accordion-menu > li:hover > a span,

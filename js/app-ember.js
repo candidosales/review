@@ -10,7 +10,7 @@ App.PageView = Ember.View.extend({
         adjustSlider(sliderPct);
     });
     
-    $('.accordion-menu li').hover(function(){
+    $('.accordion-menu li').click(function(){
 		$('.accordion-menu li').each(function(){
 			$(this).closest('li').removeClass('active');
 		});
