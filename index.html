@@ -25,8 +25,8 @@
 			<div class="row" id="cliente">
 				<div class="large-12 columns">
 					<img src="img/logo.jpg" alt="">
-					<h4>ConsultContábil
-						<small>Interface Admin</small>
+					<h4>Classificados O Dia
+						<small>Interface do usuário</small>
 					</h4>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 									{{title}}
 								{{/link-to}}							
 								{{#if children}}
-									<ul class="sub-menu">
+									<ul class="sub-menu children">
 									{{#each children}}
 										<li>
 										{{#link-to 'page' this}}
@@ -80,7 +80,7 @@
 			</div>
 		</div>
 
-		<div class="large-10 columns" id="view">			
+		<div class="large-10 columns no-padding" id="view">			
 			{{outlet}}
 		</div>
 	</div>	
@@ -88,28 +88,31 @@
 
 <script type="text/x-handlebars" data-template-name="page">
 			<div id="btn-view" class="large-12 columns">
-				<div class="large-12 columns">
-					<ul class="button-group round">
-						<li><a  {{action 'openModal'}} data-tooltip title="Informações sobre as mudanças" class="small button primary"><span class="icon-info-2"></span></a></li>
+					<div class="large-9 columns">
+						<h6>{{title}}</h6>
+					</div>
+					<div class="large-2 columns left">
+					<ul class="list-btn">
+						<li><a  {{action 'openModal'}} data-tooltip title="Informações sobre as mudanças" target="_blank" ><span class="icon-info-2"></span></a></li>
 						{{#if isResult}}
-						<li><a {{bind-attr href="pathResult"}} data-tooltip title="Download da imagem resultado" target="_blank" class="small button primary"><span class="icon-download"></span></a></li>
+						<li><a {{bind-attr href="pathResult"}} data-tooltip title="Download da imagem resultado" target="_blank"><span class="icon-download"></span></a></li>
 						{{else}}
-						<li><a {{bind-attr href="pathVision"}} data-tooltip title="Download da imagem visão"  target="_blank" class="small button primary"><span class="icon-download"></span></a></li>
+						<li><a {{bind-attr href="pathVision"}} data-tooltip title="Download da imagem visão"  target="_blank" ><span class="icon-download"></span></a></li>
 						{{/if}}
 						<li>
 						{{#if isFullScreen}}
-							<a {{action 'exitFullScreen'}} data-tooltip title="Sair do modo tela cheia" class="small button primary">
+							<a {{action 'exitFullScreen'}} data-tooltip title="Sair do modo tela cheia">
 								<span class="icon-contract"></span>
 							</a>
 							{{else}}
-							<a {{action 'fullScreen'}} data-tooltip title="Tela cheia" class="small button primary">
+							<a {{action 'fullScreen'}} data-tooltip title="Tela cheia">
 								<span class="icon-expand"></span>
 							</a>
 						
 							{{/if}}
 						</li>
 					</ul>
-				</div>
+					</div>
 			</div>
 
 
