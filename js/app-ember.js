@@ -81,34 +81,40 @@ App.Page = DS.Model.extend({
 
 App.Page.FIXTURES = [{
 	id: 1,
-	title: "Painel",
+	title: "Início",
 	icon: "",
-	pathVision: "img/painel-v.png",
-	pathResult: "img/painel-r.jpg"
+	pathVision: "img/home.png",
+	pathResult: "img/home.jpg"
 },{
 	id: 2,
-	title: "Mensagens",
+	title: "Menu aberto",
 	icon: "",
-	pathVision: "img/mensagens-v.png",
-	pathResult: "img/mensagens-r.jpg",
-	children:[3]
+	pathVision: "img/home_destaque_categoria.png",
+	pathResult: "img/home_destaque_categoria.jpg"
 },{
 	id: 3,
-	title: "Mensagem",
+	title: "Login",
 	icon: "",
-	son: true,
-	pathVision: "img/mensagem-v.png",
-	pathResult: "img/mensagem-r.jpg"
+	pathVision: "img/home-login.png",
+	pathResult: "img/home-login.jpg",
+	children:[4]
 },{
 	id: 4,
-	title: "Solicitações",
+	title: "Logado",
 	icon: "",
-	pathVision: "img/solicitacoes-v.png",
-	pathResult: "img/solicitacoes-r.jpg"
+	son: true,
+	pathVision: "img/home-logged.png",
+	pathResult: "img/home-logged.jpg"
 },{
 	id: 5,
-	title: "Arquivos",
+	title: "Anúncio",
 	icon: "",
-	pathVision: "img/arquivos-v.png",
-	pathResult: "img/arquivos-r.jpg"
+	pathVision: "img/anuncio.png",
+	pathResult: "img/anuncio.jpg"
+},{
+	id: 6,
+	title: "Anunciante",
+	icon: "",
+	pathVision: "img/anunciante.png",
+	pathResult: "img/anunciante.jpg"
 }];
