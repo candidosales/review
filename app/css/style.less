@@ -1,0 +1,249 @@
+@import 'lesshat.less';
+
+/* Variables
+**************************/
+@color-1: #34495e;
+@color-2: #698DBB;
+@color-link: #2980b9;
+@color-link-active: #3498db;
+
+@font-family-1: 'Roboto', sans-serif;
+
+/* Globals
+**************************/
+body,h1,h2,h3,h4,h5{
+	font-family: @font-family-1;
+}
+h1,h2,h3,h4,h5{
+		color: @color-2;
+	}
+.none{display: none}
+.right{float: right}
+.left{float:left}
+hr{
+	border-color: #5b7999;
+}
+.reveal-modal{
+	h1,h2,h3,h4,h5{
+		text-shadow:none;
+		color: #000;
+	}
+	ul{
+		margin: 0 0 20px 20px;
+		list-style: none;
+		li{
+			font-size: 0.8em;
+		}
+	}
+}
+.button{
+	box-shadow: none;
+	background: @color-2;
+}
+/* App
+**************************/
+#content{
+	max-width: none;
+}
+#cliente{
+	padding-bottom: 20%;
+}
+#menu {
+	position: fixed;
+	height: 100%;
+	padding-top: 30px;
+	.box-shadow(inset -5px 0 25px rgba(0, 0, 0, 0.2));
+	.gradient(~"linear-gradient(to bottom, #ecf0f1 50%,#afc9e7 100%)");
+	h4{
+		color: #698DBB;
+		line-height: 1;
+		float: left;
+		width: 65%;
+		font-size: 1em;
+		padding: 10% 0 0 4%;
+		font-weight: 700;
+	}
+
+	img{
+		width: 80px;
+		height: 80px;
+		.border-radius(50px);
+		float: left;
+	}
+
+	.side-nav{
+		h3,h4,h5{
+			color:@color-2;
+			text-shadow: 0px 2px 0px #000;
+		}
+		 li {
+			margin: 0 0 0.6375em 0;
+			font-size: 0.95em;
+			&.son{margin-left:5%;}
+			a{ color:@color-link;
+				&:hover{
+				color: #FFFFFF;
+				font-size: 1em;
+				}
+
+				&.active{font-weight: bold; color: @color-link-active}
+			}
+		}
+	}
+}
+#menu-list{
+	padding-bottom:20%;
+}
+.list-btn{
+	list-style: none;
+	margin: 0;
+	li{
+		float: left;
+		height: 40px;
+		width: 40px;
+		.transition(~"all 0.3s ease-in");
+		a{
+			float: left;
+			margin: 20% 0 0 0;
+			color:#fff;
+			cursor:pointer;
+			font-size: 1em;
+		}
+	}
+}
+#view{
+	padding: 0;
+	img{
+		.box-shadow(0px 5px 20px #95a5a6);
+		.border-radius(5px);
+	}
+}
+
+#btn-view{
+	z-index: 1000;
+	padding: 0;
+	background: #AFC9E7;
+	margin: 0;
+	position: fixed;
+	background: rgba(0, 0, 0, 0.2);
+	h6{
+		margin:0.7% 0 0 0;
+		color:#fff;
+		font-family: @font-family-1;
+		font-weight: 500;
+	}
+}
+
+#image{
+	padding: 50px 10px 10px 10px;
+	height: 800px;
+	float: right;
+	width: 100%;
+}
+
+#authors{
+	ul{
+		list-style: none;
+		li{
+			font-size: 0.6em;
+		}
+	}
+}
+#wings{
+	position: absolute;
+	bottom:10px;
+	right: 10px;
+	img{
+		height: 30px;
+		width: 30px;
+	}
+}
+/* Zoom
+
+******************************/
+/* Accordion menu
+
+******************************/
+
+.accordion-menu,
+.accordion-menu ul,
+.accordion-menu li,
+.accordion-menu a,
+.accordion-menu span {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+ 
+.accordion-menu li {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    .transition(~"all 0.3s ease-in");
+}
+
+.accordion-menu li:last-child{
+  	border-bottom:none;
+}
+
+.accordion-menu li > a {
+	padding: 6% 4%;
+    display: block;
+    position: relative;
+    min-width: 110px; 
+    color: @color-2;
+    font-size: 1em;
+    font-weight: 100;
+    font-family: @font-family-1;
+    text-decoration: none;
+    .transition(~"all 0.3s ease-in");
+}
+
+.sub-menu li a {
+    color: #797979;
+    border-bottom: 1px solid #c9c9c9;
+    padding: 6% 10%;
+}
+ 
+.sub-menu li:last-child a { border: none; }
+ 
+.sub-menu em {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 14px;
+    color: #a6a6a6;
+    font: normal 10px/32px Arial, sans-serif;
+}
+
+
+.accordion-menu > li:hover > a,
+.accordion-menu > li:target > a,
+.accordion-menu > li > a.active,
+.accordion-menu > li > .sub-menu li a{
+    color: #3e5706;
+    background: #fff;
+}
+ 
+.accordion-menu > li:hover > a span,
+.accordion-menu > li:target > a span,
+.accordion-menu > li > a.active span {
+    color: #fdfdfd;
+    text-shadow: 0px 1px 0px rgba(0,0,0, .35);
+    background: #3e5706;
+}
+ 
+.sub-menu li:hover a { background: #efefef; }
+
+.accordion-menu li > .sub-menu {
+    height: 0;
+    overflow: hidden;
+ 	display: none;
+}
+ 
+.accordion-menu li.active > .sub-menu {
+    display: block;
+    height: inherit;
+}
+
+

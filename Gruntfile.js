@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     less: {
       development: {
         files: {
-          "<%= dir.app %>/css/app.css": "<%= dir.app %>/css/app.less"
+          "<%= dir.app %>/css/app.css": "<%= dir.app %>/css/style.less"
         }
       },
       production: {
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
           yuicompress: true
         },
         files: {
-          "<%= dir.app %>/css/app.css": "<%= dir.app %>/css/app.less"
+          "<%= dir.app %>/css/app.css": "<%= dir.app %>/css/style.less"
         }
       }
     },
@@ -52,23 +52,16 @@ module.exports = function(grunt) {
         dest: '<%= dir.dist %>'
       }
     },
-    usemin: {
-      html: ['<%= dir.dist %>/{,*/}*.html'],
-      css: ['<%= dir.dist %>/css/{,*/}*.css'],
-      options: {
-        dirs: ['<%= dir.dist %>']
-      }
-    },
-     imagemin: {
+    imagemin: {
       dist: {
         options: {                       // Target options
           optimizationLevel: 3
         },
         files: [{
           expand: true,
-          cwd: '<%= dir.app %>/images',
+          cwd: '<%= dir.app %>/img',
           src: '{,*/}*.{png,jpg,jpeg}',
-          dest: '<%= dir.dist %>/images'
+          dest: '<%= dir.dist %>/img'
         }]
       }
     },
@@ -97,12 +90,36 @@ module.exports = function(grunt) {
                         '*.{ico,txt}',
                         '.htaccess',
                         //'components/**/*',
-                        'images/{,*/}*.{gif,webp}',
+                        'img/{,*/}*.{gif,webp}',
                         'css/fonts/*'
                     ]
                 }]
             }
-        },
+    },
+    usemin: {
+      html: ['<%= dir.dist %>/{,*/}*.html'],
+      css: ['<%= dir.dist %>/css/{,*/}*.css'],
+      options: {
+        dirs: ['<%= dir.dist %>']
+      }
+    },
+    cropthumb: {
+      options: {
+        width: 1290,
+        height: 720,
+        cropAmount: 0.5,
+        overwrite: false
+      },
+      files: [{
+        expand: true,
+        dot: true,
+        cwd: '<%= dir.dist %>/img',
+        dest: '<%= dir.dist %>/img/resize',
+        src: [
+            'home.jpg'
+        ]
+      }]
+    },
   }); 
 
   // Default task.
@@ -113,7 +130,6 @@ module.exports = function(grunt) {
     'imagemin',
     'htmlmin',
     'concat',
-    'cssmin',
     'copy',
     'uglify',
     'usemin'

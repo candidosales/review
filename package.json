@@ -1,7 +1,7 @@
 {
-  "name": "consultContabil",
+  "name": "review",
   "version": "1.0.0",
-  "description": "Nova interface para o administrador da ConsultContabil",
+  "description": "Interface para apresentacao de trabalhos",
   "main": "Gruntfile.js",
   "dependencies": {
     "grunt": "~0.4.1",
@@ -24,14 +24,15 @@
     "matchdep": "latest",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-htmlmin": "~0.1.3",
-    "grunt-contrib-imagemin": "~0.1.4"
+    "grunt-contrib-imagemin": "~0.1.4",
+    "grunt-cropthumb": "~0.1.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",
   "author": {
-    "name": "Candido Sales Gomes",
+    "name": "Wings",
     "email": "candidosg@gmail.com",
     "twitter": "@candidosales"
   },

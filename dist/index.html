@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width">
+	<title>Classificados O Dia - Interface do usuário</title>
+
+	<link rel="stylesheet" href="css/main.css">
+
+	<!--<link rel="stylesheet/less" href="css/style.less">
+		<script src="js/vendor/less-1.4.1.min.js"></script>-->
+	<script src="js/vendor/custom.modernizr.js"></script>
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<script type="text/x-handlebars" data-template-name="pages">
+	<div class="row" id="content">
+
+		<div class="large-2 columns" id="menu">
+			<div class="row" id="cliente">
+				<div class="large-12 columns">
+					<img src="img/logo.jpg" alt="">
+					<h4>Classificados O Dia
+						<small>Interface do usuário</small>
+					</h4>
+				</div>
+			</div>
+			<div class="row">
+				<nav data-step="2" data-intro="Escolha"  id="menu-list">
+					<ul class="accordion-menu">
+					{{#each}}
+					{{#if son}}
+					{{else}}
+							<li>
+								{{#link-to 'page' this}}
+									{{title}}
+								{{/link-to}}							
+								{{#if children}}
+									<ul class="sub-menu children">
+									{{#each children}}
+										<li>
+										{{#link-to 'page' this}}
+											{{#if icon}}
+												<span {{bind-attr class="icon"}} >&nbsp;</span>
+											{{/if}}
+											{{title}}
+										{{/link-to}}
+										</li>
+									{{/each}}
+
+									</ul>
+								{{/if}}
+							</li>
+					{{/if}}					
+					{{/each}}
+					</ul>
+				</nav>
+			</div>
+			<div id="authors">
+				<ul>
+					<li>
+						<h5> <span class="icon-users"></span>  Autores</h5>
+					</li>
+					<li>
+						<a data-tooltip target="_blank" title="Visite seu blog" href="http://candidosalesg.wordpress.com">
+							 Cândido Sales <span class="icon-wordpress"></span>
+						</a>
+					</li>
+					<li>
+						<a data-tooltip target="_blank" title="Visite seu blog" href="http://nilocoelhojunior.com/">
+							 Nilo Coelho <span class="icon-wordpress"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div id="wings">
+				<img src="img/wings.png" alt="">
+			</div>
+		</div>
+
+		<div class="large-10 columns no-padding" id="view">			
+			{{outlet}}
+		</div>
+	</div>	
+</script>
+
+<script type="text/x-handlebars" data-template-name="page">
+			<div id="btn-view" class="large-12 columns">
+					<div class="large-9 columns">
+						<h6>{{title}}</h6>
+					</div>
+					<div class="large-2 columns left">
+					<ul class="list-btn">
+						<li><a  {{action 'openModal'}} data-tooltip title="Informações sobre as mudanças" target="_blank" ><span class="icon-info-2"></span></a></li>
+						{{#if isResult}}
+						<li><a {{bind-attr href="pathResult"}} data-tooltip title="Download da imagem resultado" target="_blank"><span class="icon-download"></span></a></li>
+						{{else}}
+						<li><a {{bind-attr href="pathVision"}} data-tooltip title="Download da imagem visão"  target="_blank" ><span class="icon-download"></span></a></li>
+						{{/if}}
+						<li>
+						{{#if isFullScreen}}
+							<a {{action 'exitFullScreen'}} data-tooltip title="Sair do modo tela cheia">
+								<span class="icon-contract"></span>
+							</a>
+							{{else}}
+							<a {{action 'fullScreen'}} data-tooltip title="Tela cheia">
+								<span class="icon-expand"></span>
+							</a>
+						
+							{{/if}}
+						</li>
+					</ul>
+					</div>
+			</div>
+
+
+	<div class="large-12 columns text-center" id="image">
+		<div class="twentytwenty-container">
+			<img class="vision" {{bind-attr src="pathVision"}} />
+			<img id="result" class="result" {{bind-attr src="pathResult"}} />
+		</div>
+	</div>
+
+	<div id="changelog" class="reveal-modal">
+	  <h4>Histórico de mudanças</h4>
+	  <hr>
+	  <h6>6.v (Abril 17, 2013)</h6>
+	  <ul>
+	  	<li>Inserindo o título no botão </li>
+	  	<li>Alterado a imagem de fundo para uma que remeta tranquilidade e tenha as cores da ConsultContabil</li>
+	  	<li>Inserido o novo layout em todas as páginas</li>
+	  	<li>Inserido a imagem do cliente na área do login</li>
+	  </ul>
+	  <h6>5.v (Abril 11, 2013)</h6>
+	  <ul>
+	  	<li>Melhorar as cores do background e apresentar tooltip para leigos do sistema </li>
+	  </ul>
+	  <h6>4.v (Abril 10, 2013)</h6>
+	  <ul>
+	  	<li>Acoplamento do layout ao invólucro, tornando o layout mais conciso e organizado, evitando olho escapar para a profundidade do background</li>
+	  	<li>Reposicionamento do menu principal e da busca</li>
+	  </ul>
+	  <h6>3.v (Abril 9, 2013)</h6>
+	  <ul>
+	  	<li>Mudança de background para cores com tonalidade secundárias ao da logo </li>
+	  	<li>Inserido a "?" para indicar um item para tirar dúvida sobre a funcionalidade aos leigos</li>
+	  	<li>Retirado dos gráficos devido ao <span class="round alert label">excesso de informação no Painel</span>, inserindo-os somente nas páginas que os contextualizam</li>
+	  	<li>Ocultamento sobre as informações de regularização do cliente por <span class="round alert label">excesso de informação no Painel</span>, não sendo o foco principal do Painel</li>
+	  	<li>Inserção da busca</li>
+	  </ul>
+	  <h6>2.v (Abril 5, 2013)</h6>
+	  <ul>
+	  	<li>Gráfico mais simples</li>
+	  	<li>Botões minimalista sem texto</li>
+	  	<li>Acrescentado o botão de adicionar solicitação no Painel</li>
+	  	<li>Mudança do ícone do porco para o leão</li>
+	  	<li>Inserido o layout do chat</li>
+	  </ul>
+	  <h6>1.v (Abril 3, 2013)</h6>
+	  <ul>
+	  	<li>Design de interface de acordo com wireframe prévio </li>
+	  </ul>
+	  <a {{action 'closeModal'}}  class="close-reveal-modal">&#215;</a>
+	</div>	
+</script>
+ 	<script src="js/main.js"></script>
+</body>
+</html>
