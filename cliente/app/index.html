@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width" />
+	<title>Classificados O Dia - Interface do usuário</title>
+
+	<!-- build:css css/main.css -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/foundation.css">
+	<link rel="stylesheet" href="css/font.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/twentytwenty.css"/>
+    <!-- endbuild -->
+    <!--
+	<link rel="stylesheet/less" href="css/style.less">
+		<script src="js/vendor/less-1.4.1.min.js"></script>
+	-->
+	<script src="js/vendor/custom.modernizr.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<script type="text/x-handlebars" data-template-name="pages">
+	<div class="row" id="content">
+
+		<div class="large-2 columns" id="menu">
+			<div class="row" id="cliente">
+				<div class="large-12 columns">
+					<img src="img/logo.jpg" alt="">
+					<h4>Classificados O Dia
+						<small>Interface do usuário</small>
+					</h4>
+				</div>
+			</div>
+			<div class="row">
+				<nav data-step="2" data-intro="Escolha"  id="menu-list">
+					<ul class="accordion-menu">
+					{{#each}}
+					{{#if son}}
+					{{else}}
+							<li>
+								{{#link-to 'page' this}}
+									{{title}}
+								{{/link-to}}							
+								{{#if children}}
+									<ul class="sub-menu children">
+									{{#each children}}
+										<li>
+										{{#link-to 'page' this}}
+											{{#if icon}}
+												<span {{bind-attr class="icon"}} >&nbsp;</span>
+											{{/if}}
+											<span class="icon-level-up">&nbsp;</span>
+											{{title}}
+										{{/link-to}}
+										</li>
+									{{/each}}
+
+									</ul>
+								{{/if}}
+							</li>
+					{{/if}}					
+					{{/each}}
+					</ul>
+				</nav>
+			</div>
+			<div id="authors">
+				<ul>
+					<li>
+						<h5> <span class="icon-users"></span>  Autores</h5>
+					</li>
+					<li>
+						<a data-tooltip target="_blank" title="Visite seu blog" href="http://candidosalesg.wordpress.com">
+							 Cândido Sales <span class="icon-wordpress"></span>
+						</a>
+					</li>
+					<li>
+						<a data-tooltip target="_blank" title="Visite seu blog" href="http://nilocoelhojunior.com/">
+							 Nilo Coelho <span class="icon-wordpress"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div id="wings">
+				<img src="img/wings-1.png" alt="">
+			</div>
+		</div>
+
+		<div class="large-10 columns no-padding" id="view">			
+			{{outlet}}
+		</div>
+	</div>	
+</script>
+
+<script type="text/x-handlebars" data-template-name="page">
+			<div id="btn-view" class="large-12 columns">
+					<div class="large-9 columns">
+						<h6>{{title}}</h6>
+					</div>
+					<div class="large-2 columns left">
+					<ul class="list-btn">
+						<li><a  {{action 'openModal'}} data-tooltip title="Informações sobre as mudanças" target="_blank" ><span class="icon-info"></span></a></li>
+						{{#if isResult}}
+						<li><a {{bind-attr href="pathResult"}} data-tooltip title="Download da imagem resultado" target="_blank"><span class="icon-download"></span></a></li>
+						{{else}}
+						<li><a {{bind-attr href="pathVision"}} data-tooltip title="Download da imagem visão"  target="_blank" ><span class="icon-download"></span></a></li>
+						{{/if}}
+						<li>
+						{{#if isFullScreen}}
+							<a {{action 'exitFullScreen'}} data-tooltip title="Sair do modo tela cheia">
+								<span class="icon-contract"></span>
+							</a>
+							{{else}}
+							<a {{action 'fullScreen'}} data-tooltip title="Tela cheia">
+								<span class="icon-expand"></span>
+							</a>
+						
+							{{/if}}
+						</li>
+					</ul>
+					</div>
+			</div>
+
+
+	<div class="large-12 columns text-center" id="image">
+		<div class="twentytwenty-container">
+			<img class="vision" {{bind-attr src="pathVision"}} />
+			<img id="result" class="result" {{bind-attr src="pathResult"}} />
+		</div>
+	</div>
+
+	<div id="changelog" class="reveal-modal">
+	  <h4>Histórico de mudanças</h4>
+	  <hr>
+	  <h6>2.v <small>(22 de outubro de 2013)</small></h6>
+	  <ul>
+	  	<li>Migalhas de pão nas páginas internas;</li>
+		<li>Botões de compartilhamento nas redes sociais nas páginas internas;</li>
+		<li>Anúncios relacionados na página interna do anúncio. Pode ser abaixo do box da descrição do produto e perguntas ao vendedor;</li>
+		<li>Botão destacado 'Publicar anúncio grátis' como no Bom negócio e OLX;</li>
+		<li>Botão/link para enviar e-mail e enviar SMS na área de fale com o anunciante na página interna do anúncio;</li>
+	  </ul>
+	  <h6>1.v <small>(18 de outubro de 2013)</small></h6>
+	  <ul>
+	  	<li>Entregue o projeto</li>
+	  </ul>
+	  <a {{action 'closeModal'}}  class="close-reveal-modal">&#215;</a>
+	</div>	
+</script>
+ 	<!-- build:js js/main.js -->
+	<script src="js/vendor/jquery.js"></script>
+	<script src="js/foundation.min.js"></script>
+
+	<script src="js/vendor/handlebars-1.0.0.js"></script>
+	<script src="js/vendor/ember-1.1.0.js"></script>
+	<script src="js/vendor/ember-data.prod.js"></script>
+	<script src="js/vendor/bigscreen.min.js"></script>
+	<script src="js/vendor/jquery.event.move.js"></script>
+    <script src="js/vendor/jquery.twentytwenty.js"></script>
+	<script src="js/app-ember.js"></script>
+	<script src="js/app.js"></script>
+	<!-- endbuild -->
+</body>
+</html>
